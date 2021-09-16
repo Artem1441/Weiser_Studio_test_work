@@ -25,6 +25,7 @@ export const Schedule = () => {
       },
     },
     series: [{ data }],
+    title: "",
   };
 
   return (

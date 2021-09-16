@@ -3,15 +3,19 @@ import classes from "./Header.module.scss";
 import refresh from "./../../assets/refresh.svg";
 import settings from "./../../assets/settings.svg";
 import close from "./../../assets/close.svg";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { fetchDollarRate } from "./../../API/fetchDollarRate";
 
 export const Header = () => {
+  const dispatch = useDispatch();
   const pointsData = useSelector((state) => state.scheduleName.pointsData);
   const currentPoint = useSelector((state) => state.scheduleName.currentPoint);
+  const dollarRate = useSelector((state) => state.scheduleName.dollarRate);
   const presentPoint = currentPoint - 1;
   const [pointToday, setPointToday] = useState(0);
   const [pointYesterday, setPointYesterday] = useState(0);
   const [difference, setDifference] = useState(0);
+  const [currency, setCurrency] = useState(true);
 
   useEffect(() => {
     const current = filter(currentPoint);
@@ -28,6 +32,10 @@ export const Header = () => {
       setDifference("-");
     }
   }, [currentPoint]);
+
+  useEffect(() => {
+    dispatch(fetchDollarRate());
+  }, []);
 
   const filter = (pointId) => {
     return pointsData.filter((point) => point.id === pointId && point)[0];
@@ -56,19 +64,30 @@ export const Header = () => {
         <div className={classes.indicators_row}>
           <div className={classes.indicators_title}>Показатель</div>
           <div className={classes.indicators_value}>
-            Выручка, <span>руб</span>
+            Выручка,{" "}
+            <span onClick={() => setCurrency(!currency)}>
+              {currency ? "руб" : "дол"}
+            </span>
           </div>
         </div>
 
         <div className={classes.indicators_row}>
           <div className={classes.indicators_title}>Текущий день</div>
-          <div className={classes.indicators_value}>{pointToday.y}</div>
+          <div className={classes.indicators_value}>
+            {currency
+              ? pointToday.y
+              : Math.ceil((pointToday.y * 100) / dollarRate) / 100}
+          </div>
         </div>
 
         <div className={classes.indicators_row}>
           <div className={classes.indicators_title}>Вчера</div>
           <div className={classes.indicators_value}>
-            {pointYesterday ? pointYesterday.y : ""}
+            {pointYesterday && currency
+              ? pointYesterday.y
+              : pointYesterday && !currency
+              ? Math.ceil((pointYesterday.y / dollarRate) * 100) / 100
+              : ""}
             <span
               style={
                 Number(difference) > 0
@@ -84,7 +103,11 @@ export const Header = () => {
         <div className={classes.indicators_row}>
           <div className={classes.indicators_title}>Этот день недели</div>
           <div className={classes.indicators_value}>
-            {pointYesterday ? pointYesterday.y : ""}
+            {pointYesterday && currency
+              ? pointYesterday.y
+              : pointYesterday && !currency
+              ? Math.ceil((pointYesterday.y / dollarRate) * 100) / 100
+              : ""}
           </div>
         </div>
       </div>
