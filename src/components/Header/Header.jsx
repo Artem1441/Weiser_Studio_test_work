@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import classes from "./Header.module.scss";
-import refresh from "./../../assets/refresh.svg";
-import settings from "./../../assets/settings.svg";
-import close from "./../../assets/close.svg";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchDollarRate } from "./../../API/fetchDollarRate";
+import { CONSTS } from "./../styleConsts";
+import Settings from "../Settings/Settings";
+import { dollarChangeAction } from "../../store/scheduleReducer";
 
 export const Header = () => {
   const dispatch = useDispatch();
@@ -12,10 +12,10 @@ export const Header = () => {
   const currentPoint = useSelector((state) => state.scheduleName.currentPoint);
   const presentPoint = currentPoint - 1;
   const dollarRate = useSelector((state) => state.scheduleName.dollarRate);
+  const dollarChange = useSelector((state) => state.scheduleName.dollarChange);
   const [pointToday, setPointToday] = useState(0);
   const [pointYesterday, setPointYesterday] = useState(0);
   const [difference, setDifference] = useState(0);
-  const [currency, setCurrency] = useState(true);
 
   useEffect(() => {
     const current = filter(currentPoint);
@@ -43,38 +43,31 @@ export const Header = () => {
 
   return (
     <div>
-      <div className={classes.settings}>
-        <div className={classes.settings_title}>Общая статистика</div>
-        <div className={classes.settings_btns}>
-          <div className={classes.settings_btns_icon}>
-            <img src={refresh} alt={"refresh"} width={30} />
-          </div>
-
-          <div className={classes.settings_btns_icon}>
-            <img src={settings} alt={"settings"} width={30} />
-          </div>
-
-          <div className={classes.settings_btns_icon}>
-            <img src={close} alt={"close"} width={30} />
-          </div>
-        </div>
-      </div>
+      <Settings />
 
       <div className={classes.indicators}>
         <div className={classes.indicators_row}>
           <div className={classes.indicators_title}>Показатель</div>
           <div className={classes.indicators_value}>
             Выручка,{"  "}
-            <span onClick={() => setCurrency(!currency)}>
-              {currency ? "руб" : "дол"}
+            <span onClick={() => dispatch(dollarChangeAction(!dollarChange))}>
+              {dollarChange ? CONSTS.RUBLE_MARK : CONSTS.DOLLAR_MARK}
             </span>
           </div>
         </div>
 
         <div className={classes.indicators_row}>
-          <div className={classes.indicators_title}>Текущий день</div>
-          <div className={classes.indicators_value}>
-            {currency
+          <div
+            className={classes.indicators_title}
+            style={{ background: CONSTS.SECOND_ROW_BACKGROUNG }}
+          >
+            Текущий день
+          </div>
+          <div
+            className={classes.indicators_value}
+            style={{ background: CONSTS.SECOND_ROW_BACKGROUNG }}
+          >
+            {dollarChange
               ? pointToday.y
               : Math.ceil((pointToday.y * 100) / dollarRate) / 100}
           </div>
@@ -86,9 +79,9 @@ export const Header = () => {
             style={{ display: "flex", justifyContent: "space-between" }}
             className={classes.indicators_value}
           >
-            {pointYesterday && currency
+            {pointYesterday && dollarChange
               ? pointYesterday.y
-              : pointYesterday && !currency
+              : pointYesterday && !dollarChange
               ? Math.ceil((pointYesterday.y / dollarRate) * 100) / 100
               : ""}
             <span
@@ -106,9 +99,9 @@ export const Header = () => {
         <div className={classes.indicators_row}>
           <div className={classes.indicators_title}>Этот день недели</div>
           <div className={classes.indicators_value}>
-            {pointYesterday && currency
+            {pointYesterday && dollarChange
               ? pointYesterday.y
-              : pointYesterday && !currency
+              : pointYesterday && !dollarChange
               ? Math.ceil((pointYesterday.y / dollarRate) * 100) / 100
               : ""}
           </div>

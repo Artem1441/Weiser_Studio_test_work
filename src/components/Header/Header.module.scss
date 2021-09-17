@@ -6,40 +6,6 @@
   -o-transition: $time;
 }
 
-@mixin scale($number) {
-  transform: scale($number);
-  -webkit-transform: scale($number);
-  -moz-transform: scale($number);
-  -ms-transform: scale($number);
-  -o-transform: scale($number);
-}
-
-.settings {
-  height: 60px;
-  width: 100%;
-  background: #fff;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 20px;
-
-  &_btns {
-    display: flex;
-
-    &_icon {
-      margin: 0 10px;
-      cursor: pointer;
-      transition: 0.3s;
-      @include transition(0.3s);
-
-      &:hover {
-        @include scale(1.05);
-        @include transition(0.3s);
-      }
-    }
-  }
-}
-
 .indicators {
   display: flex;
   justify-content: space-between;
@@ -50,12 +16,12 @@
 
   &_title,
   &_value {
-    border: 0.5px solid rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.8);
+    border: 0.5px solid rgba(255, 255, 255, 0.5);
     padding: 20px;
+    height: 60px;
     width: 100%;
   }
-
-
 
   &_value span {
     cursor: pointer;

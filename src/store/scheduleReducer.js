@@ -1,5 +1,6 @@
 const SET_CURRENT_POINT = "SET_CURRENT_POINT";
 const GET_DOLLAR_RATE = "GET_DOLLAR_RATE";
+const DOLLAR_CHANGE = "DOLLAR_CHANGE";
 
 const defaultState = {
   pointsData: [
@@ -195,6 +196,7 @@ const defaultState = {
   ],
   currentPoint: 0,
   dollarRate: 1,
+  dollarChange: true,
 };
 
 export const scheduleReducer = (state = defaultState, action) => {
@@ -211,6 +213,12 @@ export const scheduleReducer = (state = defaultState, action) => {
         dollarRate: action.payload,
       };
     }
+    case DOLLAR_CHANGE: {
+      return {
+        ...state,
+        dollarChange: action.payload,
+      };
+    }
     default:
       return state;
   }
@@ -224,4 +232,9 @@ export const setCurrentPointAction = (id) => ({
 export const getDollarRateAction = (rate) => ({
   type: GET_DOLLAR_RATE,
   payload: rate,
+});
+
+export const dollarChangeAction = (bool) => ({
+  type: DOLLAR_CHANGE,
+  payload: bool,
 });
