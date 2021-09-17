@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import classes from "./Table.module.scss";
-import { useSelector, } from "react-redux";
-import OneTable from "../UI/OneTable";
+import { useSelector } from "react-redux";
+import OneTable from "../UI/OneTable/OneTable";
 
 export const Table = () => {
   const pointsData = useSelector((state) => state.scheduleName.pointsData);
@@ -20,8 +20,6 @@ export const Table = () => {
   const filter = (pointId) => {
     return pointsData.filter((point) => point.id === pointId && point)[0];
   };
-
-
 
   return (
     <div>

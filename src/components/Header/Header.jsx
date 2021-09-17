@@ -3,7 +3,7 @@ import classes from "./Header.module.scss";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchDollarRate } from "./../../API/fetchDollarRate";
 import { CONSTS } from "./../styleConsts";
-import Settings from "../Settings/Settings";
+import { Settings } from "../Settings/Settings";
 import { dollarChangeAction } from "../../store/scheduleReducer";
 
 export const Header = () => {

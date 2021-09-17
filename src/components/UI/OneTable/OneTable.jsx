@@ -1,8 +1,8 @@
 import React from "react";
-import classes from "./UI.module.scss";
-import { CONSTS } from "./../styleConsts";
+import classes from "./OneTable.module.scss";
+import { CONSTS } from "./../../styleConsts";
 import { useSelector, useDispatch } from "react-redux";
-import { dollarChangeAction } from "../../store/scheduleReducer";
+import { dollarChangeAction } from "../../../store/scheduleReducer";
 
 const OneTable = ({
   title,
