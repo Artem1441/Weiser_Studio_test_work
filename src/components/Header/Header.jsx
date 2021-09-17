@@ -10,8 +10,8 @@ export const Header = () => {
   const dispatch = useDispatch();
   const pointsData = useSelector((state) => state.scheduleName.pointsData);
   const currentPoint = useSelector((state) => state.scheduleName.currentPoint);
-  const dollarRate = useSelector((state) => state.scheduleName.dollarRate);
   const presentPoint = currentPoint - 1;
+  const dollarRate = useSelector((state) => state.scheduleName.dollarRate);
   const [pointToday, setPointToday] = useState(0);
   const [pointYesterday, setPointYesterday] = useState(0);
   const [difference, setDifference] = useState(0);
@@ -23,7 +23,7 @@ export const Header = () => {
     setPointToday(current);
     setPointYesterday(present);
     if (present) {
-      if (present.y != 0) {
+      if (present.y !== 0) {
         setDifference(-Math.ceil((current.y / present.y) * 100 - 100));
       } else {
         setDifference("-");
@@ -64,7 +64,7 @@ export const Header = () => {
         <div className={classes.indicators_row}>
           <div className={classes.indicators_title}>Показатель</div>
           <div className={classes.indicators_value}>
-            Выручка,{" "}
+            Выручка,{"  "}
             <span onClick={() => setCurrency(!currency)}>
               {currency ? "руб" : "дол"}
             </span>
@@ -82,7 +82,10 @@ export const Header = () => {
 
         <div className={classes.indicators_row}>
           <div className={classes.indicators_title}>Вчера</div>
-          <div className={classes.indicators_value}>
+          <div
+            style={{ display: "flex", justifyContent: "space-between" }}
+            className={classes.indicators_value}
+          >
             {pointYesterday && currency
               ? pointYesterday.y
               : pointYesterday && !currency
