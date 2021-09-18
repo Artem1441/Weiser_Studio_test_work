@@ -1,0 +1,26 @@
+.block {
+  width: 100%;
+  padding: 10px;
+  background: yellow;
+  margin: 8px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  &_btn {
+    padding: 0;
+    border: none;
+    font: inherit;
+    color: inherit;
+    background-color: transparent;
+    height: 40px;
+    width: 80px;
+    margin-left: 20px;
+    cursor: pointer;
+    border-radius: 4px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -ms-border-radius: 4px;
+    -o-border-radius: 4px;
+  }
+}

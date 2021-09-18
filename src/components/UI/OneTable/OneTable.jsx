@@ -25,7 +25,7 @@ const OneTable = ({
         {title}
         {isChangeDollarFunction && (
           <span onClick={() => dispatch(dollarChangeAction(!dollarChange))}>
-            {dollarChange ? CONSTS.RUBLE_MARK : CONSTS.DOLLAR_MARK}
+            , {dollarChange ? CONSTS.RUBLE_MARK : CONSTS.DOLLAR_MARK}
           </span>
         )}
       </th>

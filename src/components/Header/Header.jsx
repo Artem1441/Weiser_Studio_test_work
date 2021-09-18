@@ -39,6 +39,7 @@ export const Header = () => {
 
   const filter = (pointId) => {
     return pointsData.filter((point) => point.id === pointId && point)[0];
+    // выбирает необходимый элемент среди всего массива
   };
 
   return (
