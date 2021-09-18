@@ -39,3 +39,12 @@
     }
   }
 }
+
+@media (max-width: "600px") {
+  .settings {
+    &_title {
+      font-size: 14px;
+    }
+  }
+}
+

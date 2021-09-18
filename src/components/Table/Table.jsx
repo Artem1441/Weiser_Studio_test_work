@@ -4,6 +4,9 @@ import { useSelector } from "react-redux";
 import OneTable from "../UI/OneTable/OneTable";
 
 export const Table = () => {
+  const spareTableRow = useSelector(
+    (state) => state.scheduleName.spareTableRow
+  );
   const pointsData = useSelector((state) => state.scheduleName.pointsData);
   const currentPoint = useSelector((state) => state.scheduleName.currentPoint);
   const presentPoint = currentPoint - 1;
@@ -23,24 +26,35 @@ export const Table = () => {
   };
   return (
     <div>
-      {pointYesterday && (
-        <table align="center" className={classes.table}>
-          <tbody tbody="true" style={{ width: "100%" }}>
-            {tableRows.map(
-              (row, index) =>
-                row.isShow && (
-                  <OneTable
-                    title={row.title}
-                    paramToday={pointToday.params[index]}
-                    paramYesterday={pointYesterday.params[index]}
-                    isChangeDollarFunction={row.isChangeDollarFunction}
-                    key={index}
-                  />
-                )
-            )}
-          </tbody>
-        </table>
-      )}
+      <table align="center" className={classes.table}>
+        <tbody tbody="true" style={{ width: "100%" }}>
+          {pointYesterday
+            ? tableRows.map(
+                (row, index) =>
+                  row.isShow && (
+                    <OneTable
+                      title={row.title}
+                      paramToday={pointToday.params[index]}
+                      paramYesterday={pointYesterday.params[index]}
+                      isChangeDollarFunction={row.isChangeDollarFunction}
+                      key={index}
+                    />
+                  )
+              )
+            : tableRows.map(
+                (row, index) =>
+                  row.isShow && (
+                    <OneTable
+                      title={row.title}
+                      paramToday={spareTableRow[0].params[index]}
+                      paramYesterday={spareTableRow[1].params[index]}
+                      isChangeDollarFunction={row.isChangeDollarFunction}
+                      key={index}
+                    />
+                  )
+              )}
+        </tbody>
+      </table>
     </div>
   );
 };

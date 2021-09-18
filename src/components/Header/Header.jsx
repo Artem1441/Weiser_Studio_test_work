@@ -46,12 +46,18 @@ export const Header = () => {
     <div>
       <Settings />
 
-      <div className={classes.indicators}>
+      <div
+        className={classes.indicators}
+        style={{ width: CONSTS.HEADER_TABLE_WIDTH }}
+      >
         <div className={classes.indicators_row}>
           <div className={classes.indicators_title}>Показатель</div>
           <div className={classes.indicators_value}>
-            Выручка,{"  "}
-            <span onClick={() => dispatch(dollarChangeAction(!dollarChange))}>
+            Выручка,
+            <span
+              style={{ marginLeft: 2 }}
+              onClick={() => dispatch(dollarChangeAction(!dollarChange))}
+            >
               {dollarChange ? CONSTS.RUBLE_MARK : CONSTS.DOLLAR_MARK}
             </span>
           </div>

@@ -21,6 +21,8 @@
     padding: 20px;
     height: 60px;
     width: 100%;
+    display: flex;
+    align-items: center;
   }
 
   &_value span {
@@ -31,6 +33,28 @@
     &:hover {
       color: rgb(189, 36, 36);
       @include transition(0.3s);
+    }
+  }
+}
+
+@media (max-width: "600px") {
+  .indicators {
+    &_title,
+    &_value {
+      padding: 10px;
+      height: 75px;
+      font-size: 12px;
+    }
+  }
+}
+
+@media (max-width: "400px") {
+  .indicators {
+    &_title,
+    &_value {
+      padding: 5px;
+      height: 75px;
+      font-size: 10px;
     }
   }
 }

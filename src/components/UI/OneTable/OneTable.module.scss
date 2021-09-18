@@ -37,3 +37,23 @@
     }
   }
 }
+
+@media (max-width: "600px") {
+  .table {
+    &_firstRow,
+    &_secondRow,
+    &_thirdRow,
+    &_fourthRow {
+      padding: 15px 5px;
+    }
+  }
+}
+@media (max-width: "400px") {
+  .table {
+    &_thirdRow {
+      & span {
+        right: 0;
+      }
+    }
+  }
+}

@@ -6,6 +6,7 @@ import close from "./../../assets/close.svg";
 import { AppModal } from "./../UI/AppModal/AppModal";
 import { SettingsForm } from "./../SettingsForm/SettingsForm";
 import { fetchDollarRate } from "./../../API/fetchDollarRate";
+import { CONSTS } from "../styleConsts";
 
 export const Settings = () => {
   const [modal, setModal] = useState(false);
@@ -21,19 +22,28 @@ export const Settings = () => {
       <div className={classes.settings_btns}>
         <div className={classes.settings_btns_icon} onClick={fetchDollarRate}>
           {/* обновление курса доллара */}
-          <img src={refresh} alt={"refresh"} width={30} />
+          <img src={refresh} alt={"refresh"} width={CONSTS.HEADER_ICON_SIZE} />
         </div>
 
         <div
           className={classes.settings_btns_icon}
           onClick={() => setModal(!modal)}
         >
-          {/* открытие модального окна с насройками */}
-          <img src={settings} alt={"settings"} width={30} />
+          {/* открытие модального окна с настройками */}
+          <img
+            src={settings}
+            alt={"settings"}
+            width={CONSTS.HEADER_ICON_SIZE}
+          />
         </div>
 
-        <div className={classes.settings_btns_icon}>
-          <img src={close} alt={"close"} width={30} />
+        <div
+          className={classes.settings_btns_icon}
+          onClick={() => {
+            alert("Действие при клике на крестик");
+          }}
+        >
+          <img src={close} alt={"close"} width={CONSTS.HEADER_ICON_SIZE} />
         </div>
       </div>
     </div>

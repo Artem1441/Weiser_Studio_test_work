@@ -1,7 +1,7 @@
 .block {
   width: 100%;
   padding: 10px;
-  background: yellow;
+  background: rgba(223, 215, 215, 0.5);
   margin: 8px 0;
   display: flex;
   justify-content: space-between;
@@ -22,5 +22,23 @@
     -moz-border-radius: 4px;
     -ms-border-radius: 4px;
     -o-border-radius: 4px;
+  }
+}
+
+@media (max-width: "600px") {
+  .block {
+    font-size: 12px;
+    padding: 5px;
+    margin: 6px 0;
+  }
+}
+
+@media (max-width: "400px") {
+  .block {
+    &_btn {
+      min-width: 30px;
+      width: 30px;
+      height: 30px;
+    }
   }
 }

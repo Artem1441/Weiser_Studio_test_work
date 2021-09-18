@@ -55,28 +55,14 @@ const defaultState = {
       params: [280000, 200000, 10000, 1300, 1200, 1000, 1300, 34, 34],
     },
   ],
-  // reservePointsData: [
-  //   {
-  //     y: 0,
-  //     id: -1,
-  //     params: [
-  //       {
-  //          "-",
-  //          "-",
-  //          "-",
-  //         fourthParam: "-",
-  //         fifthParam: "-",
-  //         sixthParam: "-",
-  //         seventhParam: "-",
-  //         eighthParam: "-",
-  //         ninethParam: "-",
-  //       },
-  //     ],
-  //   },
-  // ],
   currentPoint: 0,
   dollarRate: 1,
   dollarChange: true,
+  spareTableRow: [
+    { y: 0, id: 0, params: [0, 0, 0, 0, 0, 0, 0, 0, 0] },
+    { params: ["-", "-", "-", "-", "-", "-", "-", "-", "-"] },
+  ],
+  // костыль для нулевого элемента
 };
 
 export const scheduleReducer = (state = defaultState, action) => {

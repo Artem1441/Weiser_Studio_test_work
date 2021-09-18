@@ -28,7 +28,7 @@ export const OneRowInSettings = ({ row }) => {
           className={classes.block_btn}
           style={{ background: CONSTS.BACKGROUND_RED }}
         >
-          Убрать
+          {window.innerWidth > 400 ? "Убрать" : "-"}
         </button>
       ) : (
         <button
@@ -36,7 +36,7 @@ export const OneRowInSettings = ({ row }) => {
           className={classes.block_btn}
           style={{ background: CONSTS.BACKGROUND_GREEN }}
         >
-          Показать
+          {window.innerWidth > 400 ? "Показать" : "+"}
         </button>
       )}
     </div>

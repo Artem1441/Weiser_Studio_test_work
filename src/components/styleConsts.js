@@ -4,4 +4,6 @@ export const CONSTS = {
   BACKGROUND_GREEN: "rgba(161, 250, 138, 0.9)",
   DOLLAR_MARK: "$",
   RUBLE_MARK: "₽",
+  HEADER_ICON_SIZE: window.innerWidth > 600 ? 30 : 20,
+  HEADER_TABLE_WIDTH: window.innerWidth > 600 ? "100%" : window.innerWidth,
 };
