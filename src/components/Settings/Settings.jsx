@@ -10,6 +10,7 @@ import { CONSTS } from "../styleConsts";
 
 export const Settings = () => {
   const [modal, setModal] = useState(false);
+  // включено ли модальное окно
 
   return (
     <div className={classes.settings}>

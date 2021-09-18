@@ -6,4 +6,5 @@ export const CONSTS = {
   RUBLE_MARK: "₽",
   HEADER_ICON_SIZE: window.innerWidth > 600 ? 30 : 20,
   HEADER_TABLE_WIDTH: window.innerWidth > 600 ? "100%" : window.innerWidth,
+  WHITE_BACKGROUND_COLOR: "rgba(255, 255, 255, 0.8)",
 };

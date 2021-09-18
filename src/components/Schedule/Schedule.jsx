@@ -7,7 +7,9 @@ import { setCurrentPointAction } from "../../store/scheduleReducer";
 export const Schedule = () => {
   const dispatch = useDispatch();
   const pointsData = useSelector((state) => state.scheduleName.pointsData);
+  // получение данных по каждой точке, которые потом будут храниться на серваке и подгружаться с бека
   const data = [...pointsData];
+  // здесь костыль, т.к. React запрещает в series пробрасывать данные из Redux сраззу, поэтому копируем массив и баг уходит
 
   const options = {
     plotOptions: {
@@ -15,10 +17,10 @@ export const Schedule = () => {
         point: {
           events: {
             mouseOver() {
+              // исп. click при необходимости не наводить, а кликать на точки графика
               let point = this;
-              //   console.log(point.id);
               dispatch(setCurrentPointAction(point.id));
-              //   console.log(point.index);
+              // point.index - получение номер точки по индексу показа
             },
           },
         },
